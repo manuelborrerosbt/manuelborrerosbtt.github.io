@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Tartas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pedido de Tartas</h1>
+        <div id="authSection">
+            <div id="loginForm">
+                <h2>Iniciar Sesión</h2>
+                <input type="text" id="loginUsername" placeholder="Nombre de Usuario" required>
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button onclick="login()">Iniciar Sesión</button>
+                <p>No tienes una cuenta? <a href="#" onclick="toggleForms()">Regístrate</a></p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2>Registro</h2>
+                <input type="text" id="registerUsername" placeholder="Nombre de Usuario" required>
+                <input type="password" id="registerPassword" placeholder="Contraseña" required>
+                <button onclick="register()">Registrarse</button>
+                <p>Ya tienes una cuenta? <a href="#" onclick="toggleForms()">Inicia Sesión</a></p>
+            </div>
+        </div>
+
+        <div id="orderSection" style="display: none;">
+            <h1>Formulario de Pedido de Tartas</h1>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="customerName">Nombre del Cliente:</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryDate">Fecha de Entrega:</label>
+                    <input type="date" id="deliveryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Número de Teléfono:</label>
+                    <input type="tel" id="phoneNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="cakeWeight">Peso de la Tarta (kg):</label>
+                    <input type="number" id="cakeWeight" step="0.01" required onchange="calculateTotal()">
+                </div>
+                <div class="form-group">
+                    <label for="filling">Relleno:</label>
+                    <select id="filling" multiple required>
+                        <option value="Chocolate">Chocolate</option>
+                        <option value="Cremita">Cremita</option>
+                        <option value="Trufa">Trufa</option>
+                        <option value="Turrón">Turrón</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cover">Cubierta:</label>
+                    <select id="cover" multiple required>
+                        <option value="Nata">Nata</option>
+                        <option value="Yema Tostada">Yema Tostada</option>
+                        <option value="Trufa">Trufa</option>
+                        <option value="Merengue">Merengue</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="photoOption">¿Desea incluir una foto en la tarta? (+7€)</label>
+                    <input type="checkbox" id="photoOption" onchange="calculateTotal()">
+                </div>
+                <div class="form-group">
+                    <label for="candles">Seleccione los números de las velas:</label>
+                    <select id="candles" multiple required onchange="calculateTotal()">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Anotaciones Adicionales:</label>
+                    <textarea id="notes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="totalAmount">Importe Total (€):</label>
+                    <input type="text" id="totalAmount" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="advance">Anticipo (€):</label>
+                    <input type="number" id="advance" step="0.01" onchange="calculateTotal()">
+                </div>
+                <div class="form-group">
+                    <label for="remainingBalance">Importe Pendiente (€):</label>
+                    <input type="text" id="remainingBalance" readonly>
+                </div>
+                <button type="submit">Añadir Pedido</button>
+            </form>
+            <h2>Historial de Pedidos</h2>
+            <div id="ordersList"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
